@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+      <meta charset="UTF-8" />
+      <link rel="stylesheet" href="style/resultado.css" />
+      <title>Mais um segredinho…</title>
+</head>
+
+<body>
+      <div class="container">
+            <h1>Você sabia?</h1>
+            <p>
+                  Que depois do dia 24 de junho de 2023,
+                  <br />
+                  eu tenho sido a pessoa mais feliz do mundo?
+            </p>
+            <button onclick="initAudio()">Ainda penso em nosso início quando ouço essa...</button>
+      </div>
+
+      <div class="player" id="spotifyPlayer">
+            <img src="img/us.png" alt="Capa do Álbum" class="album-art">
+
+            <div class="song-info">
+                  <div class="song-title">Mistérios</div>
+                  <div class="song-artist">Jorge & Matheus</div>
+            </div>
+
+            <div class="progress-container" id="progressContainer">
+                  <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="time-info">
+                  <span id="currentTime">0:00</span> &nbsp;/&nbsp; <span id="duration">0:00</span>
+            </div>
+
+            <div class="controls">
+                  <button class="control-btn">⏮</button>
+                  <button class="control-btn play-btn" id="mainPlayBtn">▶</button>
+                  <button class="control-btn">⏭</button>
+            </div>
+
+            <div class="volume-container">
+                  <div class="volume-control">
+                        <span class="volume-icon">🔊</span>
+                        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01"
+                              value="0.1">
+                  </div>
+            </div>
+      </div>
+
+      <audio id="myAudio" src="music/Jorge, Mateus - Mistérios.mp3"></audio>
+
+      <script>
+            const audio = document.getElementById("myAudio");
+            const spotifyPlayer = document.getElementById("spotifyPlayer");
+            const progressBar = document.getElementById("progressBar");
+            const progressContainer = document.getElementById("progressContainer");
+            const currentTimeEl = document.getElementById("currentTime");
+            const durationEl = document.getElementById("duration");
+            const mainPlayBtn = document.getElementById("mainPlayBtn");
+            const volumeSlider = document.getElementById("volumeSlider");
+
+            // Variável para controlar se a duração já foi definida
+            let durationSet = false;
+
+            spotifyPlayer.style.display = "none";
+
+            function initAudio() {
+                  spotifyPlayer.style.display = "flex";
+                  audio.volume = volumeSlider.value;
+
+                  durationSet = false;
+
+                  audio.load();
+                  audio.oncanplay = function () {
+                        if (!durationSet) {
+                              durationEl.textContent = formatTime(audio.duration);
+                              durationSet = true;
+                        }
+
+                        audio.play().then(() => {
+                              mainPlayBtn.textContent = '❚❚';
+                        }).catch(error => {
+                              console.log("Reprodução automática bloqueada:", error);
+                              spotifyPlayer.style.display = "flex";
+                        });
+                  };
+            }
+
+            function formatTime(timeInSeconds) {
+                  if (isNaN(timeInSeconds) || !isFinite(timeInSeconds)) return "00:00";
+
+                  const totalSeconds = Math.abs(Math.floor(timeInSeconds));
+                  const minutes = Math.floor(totalSeconds / 60);
+                  const seconds = totalSeconds % 60;
+
+                  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds} `;
+            }
+
+            function updateProgress() {
+                  currentTimeEl.textContent = formatTime(audio.currentTime);
+                  console.log(audio.duration);
+                  if (audio.duration && !isNaN(audio.duration)) {
+                        const progressPercent = (audio.currentTime / audio.duration);
+                        progressBar.style.width = `${progressPercent}%`;
+                  }
+            }
+
+            function setProgress(e) {
+                  if (!audio.duration || isNaN(audio.duration)) return;
+                  const width = this.clientWidth;
+                  const clickX = e.offsetX;
+                  audio.currentTime = (clickX / width) * audio.duration;
+            }
+
+            function togglePlay() {
+                  if (audio.paused) {
+                        audio.play().then(() => {
+                              mainPlayBtn.textContent = '❚❚';
+                        });
+                  } else {
+                        audio.pause();
+                        mainPlayBtn.textContent = '▶';
+                  }
+            }
+
+            function changeVolume() {
+                  audio.volume = volumeSlider.value;
+                  const volumeIcon = document.querySelector('.volume-icon');
+                  if (audio.volume == 0) {
+                        volumeIcon.textContent = '🔇';
+                  } else if (audio.volume < 0.5) {
+                        volumeIcon.textContent = '🔉';
+                  } else {
+                        volumeIcon.textContent = '🔊';
+                  }
+            }
+
+            mainPlayBtn.addEventListener('click', togglePlay);
+            audio.addEventListener('timeupdate', updateProgress);
+            audio.addEventListener('ended', () => {
+                  mainPlayBtn.textContent = '▶';
+            });
+            progressContainer.addEventListener('click', setProgress);
+            volumeSlider.addEventListener('input', changeVolume);
+
+            audio.addEventListener('loadedmetadata', function () {
+                  if (!durationSet) {
+                        durationEl.textContent = " "+formatTime(audio.duration);
+                        durationSet = true;
+                  }
+            });
+
+            changeVolume();
+      </script>
+</body>
+
+</html>

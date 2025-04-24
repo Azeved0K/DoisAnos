@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/style_spotify.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Spotify Style</title>
+</head>
+<body>
+    <div class="player">
+        <div class="song-info">
+            <div class="song-title">Mistérios</div>
+            <div class="song-artist">Jorge & Matheus</div>
+        </div>
+
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="time-info">
+            <span id="currentTime">0:00</span>
+            <span id="duration">3:17</span>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn">-</button>
+            <button class="control-btn">⏮</button>
+            <button class="control-btn play-btn">▶</button>
+            <button class="control-btn">⏭</button>
+            <button class="control-btn">-</button>
+        </div>
+    </div>
+
+    <audio id="audio" src="music/Jorge, Mateus - Mistérios.mp3"></audio>
+
+    <script>
+        const audio = document.getElementById('audio');
+        const progressBar = document.getElementById('progressBar');
+        const progressContainer = document.getElementById('progressContainer');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const playBtn = document.querySelector('.play-btn');
+
+        // Formata o tempo para mm:ss
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        // Atualiza a barra de progresso
+        function updateProgress() {
+            const { duration, currentTime } = audio;
+            const progressPercent = (currentTime / duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            currentTimeEl.textContent = formatTime(currentTime);
+        }
+
+        // Define o progresso quando clica na barra
+        function setProgress(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            audio.currentTime = (clickX / width) * duration;
+        }
+
+        // Play/Pause
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                playBtn.textContent = '❚❚';
+                playBtn.classList.add('playing');
+            } else {
+                audio.pause();
+                playBtn.textContent = '▶';
+                playBtn.classList.remove('playing');
+            }
+        }
+
+        // Event listeners
+        playBtn.addEventListener('click', togglePlay);
+        audio.addEventListener('timeupdate', updateProgress);
+        audio.addEventListener('ended', () => {
+            playBtn.textContent = '▶';
+            playBtn.classList.remove('playing');
+        });
+        progressContainer.addEventListener('click', setProgress);
+
+        // Atualiza a duração total quando os metadados são carregados
+        audio.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audio.duration);
+        });
+    </script>
+</body>
+</html>

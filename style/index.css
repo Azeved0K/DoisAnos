@@ -6,16 +6,15 @@ body {
       font-family: "Comic Sans MS", cursive, sans-serif;
       background-color: #fff0f5;
       color: #ff48a4;
-      display: flex;
-      justify-content: center;
       align-items: center;
       margin: 0;
       padding: 20px;
       text-align: center;
       box-sizing: border-box;
       overflow-y: scroll;
-      min-height: 150vh;
       position: relative;
+      display: flex;
+      justify-content: center;
 }
 
 .container {

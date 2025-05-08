@@ -1,0 +1,241 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f29d;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* HEADER RESPONSIVO */
+.header-container {
+    width: 100%;
+    background-color: #000000;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.header-image {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+/* CONTAINER PRINCIPAL */
+main {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#quiz {
+    width: 100%;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* PERGUNTAS E RESPOSTAS */
+#quizContainer {
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#pergunta {
+    font-size: clamp(18px, 4vw, 24px);
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+#respostas {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.resp {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.resp:hover {
+    background-color: #ffa500;
+    transform: translateY(-2px);
+}
+
+.resp.selecionada {
+    background-color: rgba(130, 130, 235, 0.808);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* BOTÕES */
+#confirmar, #confirm-next-question, #confirm-new-game {
+    width: 100%;
+    max-width: 300px;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#confirmar {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#confirmar:hover {
+    background-color: #3e8e41;
+    transform: translateY(-2px);
+}
+
+#confirm-next-question {
+    background-color: #2196F3;
+    color: white;
+}
+
+#confirm-new-game {
+    background-color: #000;
+    color: white;
+}
+
+/* FEEDBACK VISUAL */
+.errada {
+    background-color: rgba(236, 13, 58, 0.884);
+    color: white;
+    animation: shake 0.5s;
+}
+
+.correta {
+    background-color: rgba(13, 236, 58, 0.884);
+    color: white;
+    animation: piscaCorreto 0.4s infinite;
+}
+
+@keyframes piscaCorreto {
+    0%, 49% { background-color: rgba(13, 236, 58, 0.884) }
+    50%, 100% { background-color: rgba(9, 136, 35, 0.884) }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+/* RESULTADOS */
+div#textoCorreta {
+    padding: 20px;
+    border-radius: 25px;
+    background-color: rgba(236, 13, 58, 0.884);
+    color: white;
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+    animation: photoMove 800ms;
+}
+
+div#imgCorreta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+div#imgCorreta img {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    animation: photoMove 850ms;
+}
+
+@keyframes photoMove {
+    from { transform: translateY(50%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* ELEMENTOS OCULTOS */
+.hidden {
+    display: none !important;
+}
+
+/* MEDIA QUERIES PARA DIFERENTES TELAS */
+@media (max-width: 768px) {
+    #quiz {
+        margin-top: 5%;
+    }
+    
+    #quizContainer {
+        padding: 15px;
+    }
+    
+    .resp {
+        height: 45px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    #quiz {
+        margin-top: 10%;
+    }
+    
+    #pergunta {
+        font-size: 18px;
+    }
+    
+    .resp {
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    #confirmar, #confirm-next-question, #confirm-new-game {
+        height: 40px;
+        font-size: 15px;
+    }
+    
+    div#textoCorreta {
+        padding: 15px;
+        width: 95%;
+    }
+}

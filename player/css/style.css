@@ -263,10 +263,6 @@ button:hover {
     transform: scale(1.05);
 }
 
-.back-button::before {
-    content: "←";
-}
-
 /* Media Queries para Responsividade */
 @media (max-width: 768px) {
     body {

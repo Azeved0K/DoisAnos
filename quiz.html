@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dois Anos - Kauane e Kauã</title>
-    <link rel="stylesheet" href="css/game-style.css">
+    <link rel="stylesheet" href="quiz/css/game-style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <!-- HEADER -->
     <div class="header-container">
-        <img src="_imagensQuiz/header.png" alt="Kauane e Kauã - 2 Anos" class="header-image"
+        <img src="quiz/_imagensQuiz/header.png" alt="Kauane e Kauã - 2 Anos" class="header-image"
              onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x300?text=Header+Kauane+e+Kauã'">
     </div>
 
@@ -44,7 +44,11 @@
         <h2 id="game-over">Game Over</h2>
         <button id="confirm-new-game">Tentar Novamente</button>
     </div>
+    <div>
+        <button id="confirm-new-game" onclick="window.location.href='player.html'">Voltar</button>
+        <button id="confirm-new-game" onclick="window.location.href='sky.html'">Continuar (somente após terminar o quiz)</button>
+    </div>
 
-    <script src="js/game-code.js"></script>
+    <script src="quiz/js/game-code.js"></script>
 </body>
 </html>

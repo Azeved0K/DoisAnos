@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #000428, #000000);
+    font-family: 'Arial', sans-serif;
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#star-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* ou 0, dependendo da camada */
+}
+
+.content {
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.date {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: #aac8ff;
+}
+
+.constellation {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.8;
+    animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.controls {
+    margin-top: 30px;
+}
+
+button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.heart {
+    color: #ff6b6b;
+    font-size: 1.2em;
+}
+
+.moon {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    box-shadow: 0 0 30px #f5f7fa;
+    animation: moon-glow 4s infinite alternate;
+}
+
+.star {
+    position: absolute;
+    border-radius: 50%;
+    background-color: white;
+    animation: twinkle 3s infinite alternate;
+}
+
+@keyframes moon-glow {
+    0% { box-shadow: 0 0 20px #f5f7fa; }
+    100% { box-shadow: 0 0 40px #f5f7fa; }
+}

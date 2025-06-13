@@ -2,58 +2,61 @@
 <html lang="pt-br">
 
 <head>
-      <meta charset="UTF-8" />
-      <link rel="stylesheet" href="player/css/style.css" />
-      <title>Mais um segredinho…</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="player/css/style.css" />
+    <title>Mais um segredinho…</title>
 </head>
 
 <body>
-      <a href="index.html" class="back-button">Voltar</a>
-      <div class="container">
-            <h1>Você sabia?</h1>
-            <p>
-                  Que depois do dia 24 de junho de 2023,
-                  <br />
-                  eu tenho sido a pessoa mais feliz do mundo?
-            </p>
-            <button onclick="initAudio()">Ainda penso em nosso início quando ouço essa...</button>
-      </div>
+    <a href="index.html" class="back-button">Voltar</a>
 
-      <div class="player" id="spotifyPlayer">
-            <img src="img/anonovo.jpg" alt="Capa do Álbum" class="album-art">
+    <div class="container">
+        <h1>Você sabia?</h1>
+        <p>
+            Que depois do dia 24 de junho de 2023,
+            <br />
+            eu tenho sido a pessoa mais feliz do mundo?
+        </p>
+        <button onclick="initAudio()">Ainda penso em nosso início quando ouço essa...</button>
+    </div>
 
-            <div class="song-info">
-                  <div class="song-title">Mistérios</div>
-                  <div class="song-artist">Jorge & Matheus</div>
+    <div class="player" id="spotifyPlayer">
+        <img src="img/anonovo.jpg" alt="Capa do Álbum" class="album-art">
+
+        <div class="song-info">
+            <div class="song-title">Mistérios</div>
+            <div class="song-artist">Jorge & Matheus</div>
+        </div>
+
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="time-info">
+            <span id="currentTime">0:00</span>/<span id="duration">0:00</span>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn">⏮</button>
+            <button class="control-btn play-btn" id="mainPlayBtn">▶</button>
+            <button class="control-btn">⏭</button>
+        </div>
+
+        <div class="volume-container">
+            <div class="volume-control">
+                <span class="volume-icon">🔊</span>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.1">
             </div>
+        </div>
+    </div>
 
-            <div class="progress-container" id="progressContainer">
-                  <div class="progress-bar" id="progressBar"></div>
-            </div>
-            <div class="time-info">
-                  <span id="currentTime">0:00</span> &nbsp;/&nbsp; <span id="duration">0:00</span>
-            </div>
+    <div class="container" id="additionalContent" style="display: none;">
+        <h4>Achou que era só isso?</h4>
+        <button onclick="window.location.href='quiz.html'">Continua ❤</button>
+    </div>
 
-            <div class="controls">
-                  <button class="control-btn">⏮</button>
-                  <button class="control-btn play-btn" id="mainPlayBtn">▶</button>
-                  <button class="control-btn">⏭</button>
-            </div>
-
-            <div class="volume-container">
-                  <div class="volume-control">
-                        <span class="volume-icon">🔊</span>
-                        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.1">
-                  </div>
-            </div>
-      </div>
-
-      <div class="container" id="additionalContent" style="display: none;">
-            <h4>Achou que era só isso?<h4>
-            <button onclick="window.location.href='quiz.html'">Continua =)</button>
-      </div>
-
-      <audio id="myAudio" src="player/music/Jorge, Mateus - Mistérios.mp3"></audio>
-      <script src="player/js/player.js"></script>
+    <audio id="myAudio" src="player/music/Jorge, Mateus - Mistérios.mp3"></audio>
+    <script src="player/js/player.js"></script>
 </body>
 </html>

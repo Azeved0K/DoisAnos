@@ -6,14 +6,13 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f29d;
+    background-color: #fff0f5;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* HEADER RESPONSIVO */
 .header-container {
     width: 100%;
     background-color: #000000;
@@ -29,7 +28,6 @@ body {
     object-fit: contain;
 }
 
-/* CONTAINER PRINCIPAL */
 main {
     width: 100%;
     max-width: 1200px;
@@ -48,11 +46,10 @@ main {
     align-items: center;
 }
 
-/* PERGUNTAS E RESPOSTAS */
 #quizContainer {
     width: 100%;
     max-width: 800px;
-    background-color: white;
+    background-color: #ff8193;
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -62,7 +59,7 @@ main {
     font-size: clamp(18px, 4vw, 24px);
     margin-bottom: 20px;
     text-align: center;
-    color: #333;
+    color: white;
 }
 
 #respostas {
@@ -89,7 +86,7 @@ main {
 }
 
 .resp:hover {
-    background-color: #ffa500;
+    background-color: #ff2190;
     transform: translateY(-2px);
 }
 
@@ -98,7 +95,6 @@ main {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* BOTÕES */
 #confirmar, #confirm-next-question, #confirm-new-game {
     width: 100%;
     max-width: 300px;
@@ -116,12 +112,12 @@ main {
 }
 
 #confirmar {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #fff0f5;
+    color: black;
 }
 
 #confirmar:hover {
-    background-color: #3e8e41;
+    background-color: #a754a0;
     transform: translateY(-2px);
 }
 
